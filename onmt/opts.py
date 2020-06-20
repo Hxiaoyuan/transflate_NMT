@@ -616,11 +616,7 @@ def train_opts(parser):
 def translate_opts(parser):
     """ Translation / inference options """
     group = parser.add_argument_group('Model')
-    group.add('--model', '-model', dest='models', metavar='MODEL',
-              nargs='+', type=str, default=["D:/Project/PythonProject/DeepLearning/Git/OpenNMT-py-master/data/demo-model_step_200.pt"], required=False,
-              help="Path to model .pt file(s). "
-                   "Multiple models can be specified, "
-                   "for ensemble decoding.")
+
     group.add('--fp32', '-fp32', action='store_true',
               help="Force the model to be in FP32 "
                    "because FP16 is very slow on GTX1080(ti).")
@@ -636,10 +632,6 @@ def translate_opts(parser):
     group.add('--data_type', '-data_type', default="text",
               help="Type of the source input. Options: [text|img].")
 
-    group.add('--src', '-src', required=False,
-              default="D:/Project/PythonProject/DeepLearning/Git/OpenNMT-py-master/data/src-test.txt",
-              help="Source sequence to decode (one line per "
-                   "sequence)")
     group.add('--src_dir', '-src_dir', default="",
               help='Source directory for image or audio files')
     group.add('--tgt', '-tgt',
@@ -654,9 +646,6 @@ def translate_opts(parser):
                    "shard_size=0 means no segmentation "
                    "shard_size>0 means segment dataset into multiple shards, "
                    "each shard has shard_size samples")
-    group.add('--output', '-output', default='D:/Project/PythonProject/DeepLearning/Git/OpenNMT-py-master/data/pred.txt',
-              help="Path to output the predictions (each line will "
-                   "be the decoded sequence")
     group.add('--report_align', '-report_align', action='store_true',
               help="Report alignment for each translation.")
     group.add('--report_time', '-report_time', action='store_true',
